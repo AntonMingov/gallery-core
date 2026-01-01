@@ -1,0 +1,22 @@
+<% items.each do |item| %>
+  <% 
+    image = item.compressed_image.attached? ? item.compressed_image : item.image
+    next unless image.attached?
+  %>
+  <button
+    type="button"
+    class="group relative w-full overflow-hidden rounded-xl bg-white/5 border border-white/10 shadow-lg backdrop-blur-sm text-left open-modal cursor-pointer"
+    data-image-url="<%= url_for(image) %>"
+    data-image-title="<%= I18n.locale == :en && item.title_en.present? ? item.title_en : item.title %>"
+  >
+    <%= image_tag image, class: "w-full aspect-[4/5] object-cover transition-transform duration-500 group-hover:scale-105 pointer-events-none", alt: (I18n.locale == :en && item.title_en.present? ? item.title_en : item.title), loading: "lazy" %>
+    <% if item.title.present? || item.title_en.present? %>
+      <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent px-4 py-3">
+        <p class="text-white text-sm font-medium">
+          <%= I18n.locale == :en && item.title_en.present? ? item.title_en : item.title %>
+        </p>
+      </div>
+    <% end %>
+  </button>
+<% end %>
+

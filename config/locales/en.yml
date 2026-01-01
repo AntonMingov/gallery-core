@@ -1,0 +1,39 @@
+en:
+  time:
+    formats:
+      long: "%d %B %Y, %H:%M"
+
+  meta:
+    title: "Gallery Core"
+    description: "Classical realism gallery. Style: neoclassicism with modern elements, bordering surrealism."
+    keywords: "art, bulgarian art, painting, portraits, still life, landscapes, Gallery Core"
+    site_name: "Gallery Core"
+
+  header:
+    title: "Gallery Core"
+    contact: "Contact"
+
+  categories:
+    title: "Gallery"
+    projects: "Projects"
+    load_more: "Load more"
+    loading: "Loading..."
+
+  contacts:
+    title: "Get in touch"
+    first_name: "First Name"
+    last_name: "Last Name"
+    email: "Email"
+    message: "Message"
+    send_message: "Send Message"
+    placeholder_first_name: "Your first name"
+    placeholder_last_name: "Your last name"
+    placeholder_email: "Your email address"
+    placeholder_message: "Your message"
+    follow_us: "Follow us:"
+
+  footer:
+    home: "Home"
+    gallery: "Gallery"
+    contact: "Contact"
+    name: "Gallery Core"

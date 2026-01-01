@@ -1,0 +1,27 @@
+<% if alert.present? %>
+  <div class="mx-auto md:w-2/3 w-full flex">
+    <p
+      class="py-2 px-3 mb-5 text-sm text-black inline-block rounded-lg bg-red-50 mx-auto dark:bg-gray-800 dark:text-white" role="alert"
+      x-cloak
+      x-show="showAlert"
+      x-data="{ showAlert: true }"
+      x-init="setTimeout(() => showAlert = false, 5000)"
+    >
+      <span class="font-medium"> 
+        <%= alert %>
+      </span>
+    </p>
+  </div>
+<% end %>
+<% if notice.present? %>
+  <div class="mx-auto md:w-2/3 w-full flex">
+    <p 
+      x-cloak
+      x-show="showAlert"
+      x-data="{ showAlert: true }"
+      x-init="setTimeout(() => showAlert = false, 5000)"
+      class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block mx-auto" id="notice">
+      <%= notice %>
+    </p>
+  </div>
+<% end %>

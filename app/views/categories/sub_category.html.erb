@@ -1,0 +1,29 @@
+<section class="relative z-10 bg-black pb-16 pt-28">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10 xl:px-8 2xl:px-0">
+    <div class="mb-20">
+      <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white tracking-tight mb-10">
+        <%= I18n.locale == :en && @category.name_en.present? ? @category.name_en : @category.name %>
+      </h2>
+      <% if @has_more %>
+        <div class="flex justify-end">
+          <button id="loadMore" class="px-6 py-2.5 text-xs uppercase tracking-widest text-white/70 border border-white/20 rounded-full hover:border-white/40 hover:text-white transition-all duration-300" data-loading="<%= t('categories.loading') %>" data-load-more="<%= t('categories.load_more') %>">
+            <%= t('categories.load_more') %>
+          </button>
+        </div>
+      <% end %>
+    </div>
+
+    <div id="category-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <%= render partial: 'categories/category_items', locals: { items: @category_items } %>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="imageModal" class="hidden fixed top-0 left-0 w-full h-full bg-black/70 py-10 items-center justify-center" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-hidden="true">
+  <span id="closeModal" class="absolute top-5 right-5 text-white text-3xl cursor-pointer hover:opacity-75 focus:outline-none focus:ring-2 focus:ring-white rounded z-10" aria-label="Close" tabindex="0">&times;</span>
+  <div class="flex flex-col items-center justify-center max-w-full max-h-full px-4">
+    <img id="modalImage" src="" alt="Full size image" class="max-w-full max-h-[85vh] object-contain">
+    <div id="modal-title" class="text-white text-center text-lg lg:text-2xl mt-4"></div>
+  </div>
+</div>

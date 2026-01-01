@@ -1,0 +1,45 @@
+<section id="home" class="relative flex items-center">
+  <div class="swiper mySwiper full-width-swiper">
+    <div class="swiper-wrapper">
+      <% if @testimonials.present? %>
+        <% @testimonials.each do |t| %>
+          <% next unless t.image.attached? %>
+          <div class="swiper-slide swiper-slide-bg lg:h-screen" data-bg-image="<%= url_for(t.image) %>">
+            <div class="img-holder">
+              <%= image_tag t.image, class: "fixed inset-0 h-full w-full object-cover #{ horizontal_or_vertical_img(t.image) ? 'lg:object-cover' : '' }", alt: (I18n.locale == :en && t.title_en.present? ? t.title_en : t.title) %>
+            </div>
+            <div class="relative z-10 mx-auto max-w-7xl px-6 pb-40 pt-60 lg:px-12 xl:px-6 2xl:px-0">
+              <% if t.title.present? || t.title_en.present? %>
+                <div class="pb-12 media-h:md:pb-32 media-h:lg:pb-12 xl:pb-12">
+                  <h2 data-rellax-speed="-3" data-rellax-xs-speed="0" data-rellax-mobile-speed="0" class="rellax text-6xl font-bold text-white sm:text-8xl md:text-9xl xl:leading-tight">
+                    <%= I18n.locale == :en && t.title_en.present? ? t.title_en : t.title %>
+                  </h2>
+                </div>
+              <% end %>
+
+              <% if t.description.present? || t.description_en.present? %>
+                <div class="ml-auto md:w-2/3 md:pt-12 lg:w-1/2 dark-bg-overlay">
+                  <% text = I18n.locale == :en && t.description_en.present? ? t.description_en : t.description %>
+                  <% lines = text.to_s.split("\n").reject(&:blank?) %>
+
+                  <% if lines.size > 1 %>
+                    <p class="mb-4 text-lg font-light text-white sm:text-2xl xl:leading-normal">
+                      <%= lines.first.strip %>
+                    </p>
+                    <p class="mt-4 text-right text-sm font-semibold text-white">
+                      — <%= lines.last.strip %>
+                    </p>
+                  <% else %>
+                    <p class="mb-20 text-lg font-light text-white sm:text-2xl xl:leading-normal">
+                      <%= text %>
+                    </p>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>

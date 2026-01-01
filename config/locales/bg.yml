@@ -1,0 +1,39 @@
+bg:
+  time:
+    formats:
+      long: "%d %B %Y, %H:%M"
+
+  meta:
+    title: "Галерия"
+    description: "Класически реализъм. Стил: неокласицизъм с модерни елементи, граничещ със сюрреализъм."
+    keywords: "изкуство, българско изкуство, живопис, портрети, натюрморти, пейзажи"
+    site_name: "Галерия"
+
+  header:
+    title: "Галерия"
+    contact: "Контакти"
+
+  categories:
+    title: "Галерия"
+    projects: "Проекти"
+    load_more: "Зареди още"
+    loading: "Зареждане..."
+
+  contacts:
+    title: "Свържете се с нас"
+    first_name: "Име"
+    last_name: "Фамилия"
+    email: "Имейл"
+    message: "Съобщение"
+    send_message: "Изпратете съобщение"
+    placeholder_first_name: "Вашето име"
+    placeholder_last_name: "Вашата фамилия"
+    placeholder_email: "Вашият имейл адрес"
+    placeholder_message: "Вашето съобщение"
+    follow_us: "Последвайте ни:"
+
+  footer:
+    home: "Начало"
+    gallery: "Галерия"
+    contact: "Контакти"
+    name: "Галерия"

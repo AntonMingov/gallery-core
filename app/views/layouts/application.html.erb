@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <%= metamagic title: t('meta.title'),
+        description: t('meta.description'),
+        keywords: t('meta.keywords'),
+        og: {
+          image: resolve_og_meta_image,
+          locale: I18n.locale == :bg ? 'bg_BG' : 'en_GB',
+          title: t('meta.title'),
+          description: t('meta.description'),
+          url: request.original_url,
+          site_name: t('meta.site_name')
+        }
+    %>
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="<%= request.original_url %>" />
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="google-site-verification" content="BziS7w4WqrR86SfoQ9ZJ8RmtkWU-2uLoN94CDoeIoek" />
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap" rel="stylesheet" />
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= javascript_importmap_tags %>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
+  </head>
+
+  <body class="bg-black">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-0 focus:left-0 focus:z-50 focus:px-4 focus:py-2 focus:bg-white focus:text-black focus:font-bold">
+      <%= t('accessibility.skip_to_content', default: 'Skip to main content') %>
+    </a>
+    <%= render 'layouts/shared/header' %>
+    <main id="main-content" class="relative" tabindex="-1">
+      <%= render 'layouts/shared/notice' %>
+      <%= yield %>
+    </main>
+  </body>
+</html>

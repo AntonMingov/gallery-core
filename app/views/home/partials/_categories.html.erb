@@ -1,0 +1,29 @@
+<section id="work" class="relative z-10 bg-black pt-10 lg:pt-10">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8 xl:px-8 2xl:px-0">
+    <div class="relative mt-12 grid gap-y-10 gap-x-6 sm:grid-cols-2 lg:mt-14">
+      <% @categories.each_with_index do |category, index| %>
+        <%= link_to sub_category_path(category.id),
+          class: "rellax col-span-2 lg:col-span-1",
+          'data-rellax-speed' => "#{index.even? ? 0 : 1}",
+          'data-rellax-xs-speed' => "0",
+          'data-rellax-mobile-speed' => "0",
+          'data-rellax-tablet-speed' => "0" do %>
+          <div class="relative overflow-hidden">
+            <% if category.image.attached? %>
+              <%= image_tag category.image, class: "transition duration-500 w-full h-[500px] object-cover", alt: (I18n.locale == :en && category.name_en.present? ? category.name_en : category.name), loading: "lazy" %>
+            <% else %>
+              <div class="bg-gray-800 w-full h-[500px] flex items-center justify-center">
+                <span class="text-white text-xl"><%= I18n.locale == :en && category.name_en.present? ? category.name_en : category.name %></span>
+              </div>
+            <% end %>
+          </div>
+          <div class="flex items-center justify-between p-4 bg-opacity-75">
+            <h3 class="text-2xl font-normal text-white">
+              <%= I18n.locale == :en && category.name_en.present? ? category.name_en : category.name %>
+            </h3>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</section>
