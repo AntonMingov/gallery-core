@@ -1,33 +1,63 @@
-# README
+# Gallery Core
 
-To run the project do the following commands:
+Gallery application for showcasing artwork with bilingual support (Bulgarian/English). Built with Rails, containerized with Docker, and automated with CI workflows.
 
-1. rails db:create
-2. rails db:migrate
-3. rails db:seed
-4. ./bin/bundle add tailwindcss-rails
-5. ./bin/rails tailwindcss:install
-6. rails s
-   
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Architecture
 
-Things you may want to cover:
+**Application Stack:**
+- Rails 7.1.3 app with PostgreSQL
+- Active Storage with database-backed storage (no S3 dependency)
+- Multi-stage Docker build for optimized production images
+- Docker Compose for local development with health checks
 
-* Ruby version
+**CI/CD:**
+- Smoke tests: validates Rails boot on every push/PR
+- Docker CI: builds and tests container image with caching
+- No CD pipeline (intentional - manual deployment)
 
-* System dependencies
+**Development:**
+- Docker Compose orchestrates web + PostgreSQL with volume persistence
+- Health checks ensure database readiness before app starts
+- Bundle and node_modules cached in volumes
 
-* Configuration
+## Setup
 
-* Database creation
+**Local (without Docker):**
 
-* Database initialization
+```bash
+bundle install
+rails db:create db:migrate db:seed
+./bin/rails tailwindcss:install
+rails server
+```
 
-* How to run the test suite
+**Docker:**
 
-* Services (job queues, cache servers, search engines, etc.)
+```bash
+docker-compose up
+```
 
-* Deployment instructions
+## Testing
 
-* ...
+```bash
+rails test
+```
+
+Model tests cover Contact validations and Category associations/scopes.
+
+## Tech Stack
+
+- Rails 7.1.3
+- PostgreSQL
+- Tailwind CSS
+- ActiveAdmin
+- Active Storage (database-backed)
+- Hotwire
+
+## Decisions
+
+**Database-backed Active Storage:** Chosen to avoid S3 complexity for this project size. Images stored in PostgreSQL via `active_storage_db`.
+
+**Minimal CI:** Smoke tests verify boot, Docker CI validates builds. Full test suite runs locally. No CD - deployment is manual.
+
+**Docker Compose for dev:** Simplifies local setup with one command. Production uses multi-stage Dockerfile for smaller images.
