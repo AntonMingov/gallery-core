@@ -29,6 +29,6 @@ jobs:
 
       - name: Test Docker image
         run: |
-          docker run --rm gallery-core:test rails --version
+          docker run --rm gallery-core:test ./bin/rails --version
           docker run --rm gallery-core:test bundle --version
 
