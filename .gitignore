@@ -91,6 +91,15 @@ yarn-debug.log*
 # Ignore Rails credentials backup files
 /config/credentials/*.key
 
+# Ignore Terraform files
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/*.tfvars
+!terraform/*.tfvars.example
+terraform/.terraform.tfstate.lock.info
+
 # Ignore Docker files if not needed
 # Dockerfile
 # docker-compose.yml
